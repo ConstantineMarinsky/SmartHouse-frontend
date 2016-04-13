@@ -3,6 +3,7 @@ import {RouteConfig, RouterLink, RouterOutlet} from 'angular2/router';
 
 import {Home} from './home';
 import {Dashboard} from './dashboard';
+import {SensorEdit} from './sensor-edit';
 
 import exampleRest from './example.rest.js';
 
@@ -15,6 +16,7 @@ import exampleRest from './example.rest.js';
       <nav>
         <a [routerLink]="['Home']">Home</a>
         <a [routerLink]="['Dashboard']">Dashboard</a>
+        <a [routerLink]="['SensorEdit']">SensorEdit</a>
       </nav>
       <main>
         <router-outlet></router-outlet>
@@ -23,7 +25,8 @@ import exampleRest from './example.rest.js';
 @RouteConfig([
     {path: '/', name: 'Index', component: Home, useAsDefault: true},
     {path: '/home', name: 'Home', component: Home},
-    {path: '/dashboard', name: 'Dashboard', component: Dashboard}
+    {path: '/dashboard', name: 'Dashboard', component: Dashboard},
+    {path: '/se', name: 'SensorEdit', component: SensorEdit}
 ])
 
 export class App {
