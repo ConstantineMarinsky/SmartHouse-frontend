@@ -5,6 +5,7 @@ module.exports = webpackMerge(commonConfig, {
     devtool: 'cheap-source-map',
     devServer: {
         port: 8000,
+        noInfo: true,
         host: 'localhost',
         historyApiFallback: true,
         watchOptions: {
