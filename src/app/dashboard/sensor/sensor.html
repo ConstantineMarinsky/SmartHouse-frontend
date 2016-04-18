@@ -1,4 +1,8 @@
-<div>This is a Sensor: </div>
-<div>{{data | json}}</div>
-<div>Sensor count = {{data.value}}</div>
-<div>Last time update = {{data.date | date:'shortTime'}}</div>
+<div class="sensor-widget">
+    <div class="sensor-widget_name">This is a sensor name</div>
+
+    <div class="sensor-widget_value">
+        <div>Sensor value = {{data.value}}</div>
+        <div>Last update = {{data.date | date:'shortTime'}}</div>
+    </div>
+</div>

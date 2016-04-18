@@ -1,0 +1,12 @@
+.sensor-widget {
+    border: red 3px solid;
+    display: inline-block;
+    padding: 15px;
+    font-size: 25px;
+    margin: 0 20px 20px 0;
+}
+
+.sensor-widget_name {
+    text-align: center;
+    font-weight: bold;
+}
