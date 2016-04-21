@@ -20,24 +20,36 @@ const selector = 'sh-sensor-detail';
 })
 @Injectable()
 export class SensorDetail {
-    constructor(sensorDetailService: SensorDetailService, params: RouteParams) {
+    constructor(sensorDetailService:SensorDetailService, routeParams:RouteParams) {
         this.sensorDetailService = sensorDetailService;
         this.sensor = new Sensor();
-        this.id = params.get('id');
+        this.routeParams = routeParams;
     }
 
     ngOnInit() {
-        if (this.id.toString() !== 'test') {
-            this.getSensorDetail(this.id);
-        }
-    }
-
-    getSensorDetail(id) {// eslint-disable-line
-        console.log('getSensorDetail');// eslint-disable-line
+        const id = this.routeParams.get('id');
+        this.sensorDetailService
+            .get(id)
+            .subscribe(data => {
+                this.sensor = new Sensor(data);
+            }, error => {
+                console.error(error);// eslint-disable-line
+            },
+            () => {
+                console.log('Completed!');// eslint-disable-line
+            });
     }
 
     save() {
-        console.log(this.sensor);// eslint-disable-line
-        this.sensorDetailService.save(this.sensor);
+        this.sensorDetailService
+            .save(this.sensor)
+            .subscribe(response => {
+                console.log(response);// eslint-disable-line
+            }, error => {
+                console.error(error);// eslint-disable-line
+            },
+            () => {
+                console.log('Completed!');// eslint-disable-line
+            });
     }
 }

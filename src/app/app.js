@@ -1,5 +1,5 @@
 import {Component} from 'angular2/core';
-import {RouteConfig, RouterLink, RouterOutlet, ROUTER_DIRECTIVES, ROUTER_PROVIDERS} from 'angular2/router';
+import {RouteConfig, RouterLink, RouterOutlet, ROUTER_PROVIDERS} from 'angular2/router';
 
 import {Home} from './home';
 import {Dashboard} from './dashboard';
@@ -9,7 +9,7 @@ import exampleRest from './example.rest.js';
 
 @Component({
     selector: 'sh-app',
-    directives: [RouterLink, RouterOutlet, ROUTER_DIRECTIVES],
+    directives: [RouterLink, RouterOutlet],
     providers: [ROUTER_PROVIDERS],
     styles: [require('./app.css')],
     template: `

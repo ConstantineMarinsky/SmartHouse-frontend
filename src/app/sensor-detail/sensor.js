@@ -1,10 +1,10 @@
 export default class Sensor {
-    constructor(data) {// eslint-disable-line
-        this.sensor = {
+    constructor(data = {}) {
+        Object.assign(this, {
             id: '',
             name: '',
             type: '',
             description: ''
-        };
+        }, data);
     }
 }
