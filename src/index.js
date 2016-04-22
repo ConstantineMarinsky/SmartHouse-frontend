@@ -1,3 +1,8 @@
+// Styles
+
+import './app/app.css';
+import 'materialize-css/dist/css/materialize.css';
+
 // Polyfills
 import 'core-js';
 import 'zone.js/dist/zone';
@@ -15,6 +20,8 @@ import 'socket.io-client';
 
 // RxJS
 import 'rxjs';
+
+// require('materialize-css/dist/css/materialize.css');
 
 // Bootstrap
 import {provide} from 'angular2/core';

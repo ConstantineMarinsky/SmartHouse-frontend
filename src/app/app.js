@@ -9,9 +9,9 @@ import exampleRest from './example.rest.js';
 @Component({
     selector: 'sh-app',
     directives: [RouterLink, RouterOutlet],
-    styles: [require('./app.css')],
     template: `
       <h1>Smart House</h1>
+      <a class="waves-effect waves-light btn">button</a>
       <nav>
         <a [routerLink]="['Home']">Home</a>
         <a [routerLink]="['Dashboard']">Dashboard</a>
