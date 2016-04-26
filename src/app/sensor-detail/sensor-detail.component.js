@@ -32,12 +32,7 @@ export class SensorDetail {
             .get(id)
             .subscribe(data => {
                 this.sensor = new Sensor(data);
-            }, error => {
-                console.error(error);// eslint-disable-line
-            },
-            () => {
-                console.log('Completed!');// eslint-disable-line
-            });
+            }, this._onError, this._onComplete);
     }
 
     save() {
@@ -45,11 +40,14 @@ export class SensorDetail {
             .save(this.sensor)
             .subscribe(response => {
                 console.log(response);// eslint-disable-line
-            }, error => {
-                console.error(error);// eslint-disable-line
-            },
-            () => {
-                console.log('Completed!');// eslint-disable-line
-            });
+            }, this._onError, this._onComplete);
+    }
+
+    _onError(error) {
+        console.error(error);// eslint-disable-line
+    }
+
+    _onComplete() {
+        console.log('Completed!');// eslint-disable-line
     }
 }
