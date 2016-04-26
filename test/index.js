@@ -1,8 +1,5 @@
 import 'core-js';
 
-import {beforeEachProviders} from 'angular2/testing';
-import {provide} from 'angular2/core';
-
 import * as testing from 'angular2/testing';
 import * as browser from 'angular2/platform/testing/browser';
 
