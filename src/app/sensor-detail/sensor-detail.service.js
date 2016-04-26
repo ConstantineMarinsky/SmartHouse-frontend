@@ -1,5 +1,5 @@
 import {Injectable} from 'angular2/core';
-import {Http, RequestOptions} from 'angular2/http';
+import {Http, RequestOptions, Headers} from 'angular2/http';
 
 @Injectable()
 export default class SensorDetailService {

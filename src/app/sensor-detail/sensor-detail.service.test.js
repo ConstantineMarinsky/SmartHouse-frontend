@@ -1,44 +1,47 @@
-import {Http, HTTP_PROVIDERS, XHRBackend} from 'angular2/http';
-import {MockBackend} from 'angular2/http/testing';
+import SensorDetailService from './sensor-detail.service';
+import {Http, Headers, RequestOptions} from 'angular2/http';
+import {beforeEachProviders} from 'angular2/testing';
 import {provide} from 'angular2/core';
 
-import SensorDetailService from './sensor-detail.service';
+const observableMock = { map() {} };
 
-fdescribe('SensorDetailService', () => {
-    let mockId;
-    let sensor;
+class HttpMock {
+    get() { return observableMock; }
+    post() { return observableMock; }
+}
 
-    beforeEachProviders(() => {
-        return [
-            HTTP_PROVIDERS,
-            provide(XHRBackend, {useClass: MockBackend}),
-            SensorDetailService
-        ];
-    });
+describe('SensorDetailService', () => {
+    let sut;
+    let httpMock;
+
+    beforeEachProviders(() => [
+        provide(Http, {useClass: HttpMock})
+    ]);
+
     beforeEach(() => {
-        mockId = 713;
+        httpMock = new HttpMock();
+        spyOn(httpMock, 'get').and.callThrough();
+        spyOn(httpMock, 'post').and.callThrough();
+        sut = new SensorDetailService(httpMock);
+        sut.baseUrl = 'api/sensor';
     });
-    it('should return sensor by given id', () => {
-        inject([XHRBackend, SensorDetailService], (mockBackend, sut) => {
 
-            mockBackend.connections.subscribe(
-                (connection:MockConnection) => {
-                    connection.mockRespond(new Response(
-                        new ResponseOptions({
-                                body: {
-                                    id: mockId,
-                                    name: 'mock',
-                                    type: 'mock',
-                                    description: 'mock',
-                                    active: true
-                                }
-                            }
-                        )));
-                });
-
-            sut.get(mockId).subscribe(sensors => {
-                expect(sensors.id).toBe(mockId);
-            });
-        });
+    it('should be defined', () => {
+        expect(sut).toBeDefined();
     });
+
+    it('should get sensor data from the server', () => {
+        let idMock = 'mock';
+        sut.get(idMock);
+        expect(httpMock.get).toHaveBeenCalledWith(`${sut.baseUrl}/get/${idMock}`);
+    });
+
+    it('should save sensor', () => {
+        let sensorMock = {};
+        let body = JSON.stringify(sensorMock);
+        let headers = new Headers({ 'Content-Type': 'application/json' });
+        let options = new RequestOptions({ headers });
+        sut.save(sensorMock);
+        expect(httpMock.post).toHaveBeenCalledWith(`${sut.baseUrl}/save`, body, options)
+    })
 });
